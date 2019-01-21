@@ -14,9 +14,9 @@
 		<div class="row">
 		  <div class="col-md-12">
 			  <div class="btn-group btn-group-justified" role="group" >		  
-			  	<a class="btn btn-default" href="main.jsp" role="button">HOME</a>
-			  	<a class="btn btn-default active" href="intro.jsp" role="button">INTRO</a>
-			  	<a class="btn btn-default" href="list.jsp" role="button">BBS</a>
+			  	<a class="btn btn-default" href="index.do" role="button">HOME</a>
+			  	<a class="btn btn-default active" href="intro.do" role="button">INTRO</a>
+			  	<a class="btn btn-default" href="list.do" role="button">BBS</a>
 			  	<a class="btn btn-default" href="#" role="button">LOGIN</a>
 			  </div>
 		  </div>
@@ -24,7 +24,7 @@
 		<div class="row">
 		  <div class="col-md-12">
 			<ol class="breadcrumb">
-			  <li><a href="#">Home</a></li>
+			  <li><a href="index.do">Home</a></li>
 			  <li class="active">Intro</li>
 			</ol>
 		  	<div class="page-header">

@@ -29,22 +29,21 @@
 				  <li class="active">Add</li>
 			</ol>
 			<div class="page-header">
-			  <h1>글쓰기 <small>xxx게시판</small></h1>
+			  <h1>${bean.num }번 상세페이지 <small>조회수:${bean.cnt }</small></h1>
 			</div>
 			<!-- form start -->
 			<form action="insert.do">
 			  <div class="form-group">
 			    <label for="sub">제목</label>
-			    <input type="text" name="sub" class="form-control" id="sub" placeholder="제목을 입력하세요">
+			    <input type="text" name="sub" class="form-control" id="sub" value="${bean.sub }">
 			  </div>
 			  <div class="form-group">
 			    <label for="content">내용</label>
-			    <textarea name="content" id="content" class="form-control" placeholder="내용을 입력하세요"></textarea>
+			    <textarea name="content" id="content" class="form-control">${bean.content }</textarea>
 			  </div>
-			  <button type="submit" class="btn btn-primary">작성</button>
-			  <button type="reset" class="btn btn-default">취소</button>
 			</form>
 			<!-- form end -->
+			<a href="delete.do?idx=${bean.num }"  role="button" class="btn btn-danger">삭제</a>
 		  </div>
 		</div> <!-- row end -->
 	</div><!-- container end -->
