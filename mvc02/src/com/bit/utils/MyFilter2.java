@@ -13,21 +13,19 @@ public class MyFilter2 implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Filter destroy...");
 	}
 
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain chain) throws IOException, ServletException {
-		System.out.println("Filter2 doFilter...");
+		System.out.println("Filter doFilter...");
 		chain.doFilter(arg0, arg1);
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Filter init...");
 	}
 
 }
