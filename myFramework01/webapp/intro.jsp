@@ -14,8 +14,8 @@
 		<div class="row">
 		  <div class="col-md-12">
 			  <div class="btn-group btn-group-justified" role="group" >		  
-			  	<a class="btn btn-default  active" href="main.jsp" role="button">HOME</a>
-			  	<a class="btn btn-default" href="intro.jsp" role="button">INTRO</a>
+			  	<a class="btn btn-default" href="main.jsp" role="button">HOME</a>
+			  	<a class="btn btn-default active" href="intro.jsp" role="button">INTRO</a>
 			  	<a class="btn btn-default" href="list.jsp" role="button">BBS</a>
 			  	<a class="btn btn-default" href="#" role="button">LOGIN</a>
 			  </div>
@@ -23,11 +23,16 @@
 		</div>
 		<div class="row">
 		  <div class="col-md-12">
-		  	<div class="jumbotron">
-			  <h1>환영합니다!</h1>
-			  <p>mysql를 활용한 게시판 웹페이지 입니다.</p>
-			  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-			</div>
+			<ol class="breadcrumb">
+			  <li><a href="#">Home</a></li>
+			  <li class="active">Intro</li>
+			</ol>
+		  	<div class="page-header">
+		  		<h1>인트로<small>부트스트랩 소개</small> </h1>
+		  	</div>
+		  	<p>내용</p>
+		  	<p class="lead">내용</p>
+		  	<p>내용</p>
 		  </div>
 		</div>
 	</div>
