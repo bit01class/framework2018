@@ -39,7 +39,7 @@
   <div class="row">
     <div class="col-md-12">
     	<!-- start -->
-    	<form class="form-horizontal">
+    	<form class="form-horizontal" action="insert.do" method="post">
 		  <div class="form-group">
 		    <label for="sub" class="col-sm-2 control-label">제목</label>
 		    <div class="col-sm-10">
