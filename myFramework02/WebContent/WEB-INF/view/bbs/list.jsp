@@ -19,9 +19,9 @@
 	      <div class="navbar-brand">비트교육센터</div>
 	    </div>
 	    <ul class="nav navbar-nav">
-			<li class="active"><a href="${root }index.do">HOME</a></li>
+			<li><a href="${root }index.do">HOME</a></li>
 			<li><a href="${root }intro.do">INTRO</a></li>
-			<li><a href="${root }bbs/list.do">BBS</a></li>
+			<li class="active"><a href="${root }bbs/list.do">BBS</a></li>
 			<li><a href="#">LOGIN</a></li>
 		</ul>
 	</div><!-- /.container-fluid -->
@@ -30,8 +30,9 @@
   <div class="row">
     <div class="col-md-12">
     	<div class="jumbotron">
-		  <h1>Hello, world!</h1>
+		  <h1>게시판!</h1>
 		  <p>...</p>
+		  <p><a class="btn btn-primary btn-lg" href="add.do" role="button">글쓰기</a></p>
 		</div>
     </div>
   </div>

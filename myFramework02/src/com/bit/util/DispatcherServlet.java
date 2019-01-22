@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bit.controller.AddFormController;
 import com.bit.controller.IndexController;
+import com.bit.controller.IntroController;
+import com.bit.controller.ListController;
 
 public class DispatcherServlet extends HttpServlet {
 
@@ -21,6 +24,12 @@ public class DispatcherServlet extends HttpServlet {
 		
 		if("/index.do".equals(url)){
 			controller=new IndexController();
+		}else if("/intro.do".equals(url)){
+			controller=new IntroController();
+		}else if("/bbs/list.do".equals(url)){
+			controller=new ListController();
+		}else if("/bbs/add.do".equals(url)){
+			controller=new AddFormController();
 		}
 		
 		String view="";
