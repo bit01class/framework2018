@@ -1,8 +1,12 @@
 package com.bit.core;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Set;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,27 +15,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DispatcherServlet extends HttpServlet{
-	HashMap<String, BitController> map =new HashMap<String, BitController>();
+	HendlerMapping hendler=new HendlerMapping();
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		Enumeration<String> names = config.getInitParameterNames();
-		while(names.hasMoreElements()){
-			String name=names.nextElement();
-			String value=config.getInitParameter(name);
-			try {
-				Class<?> clz = Class.forName(value);
-				BitController controller=(BitController)clz.newInstance();
-				map.put(name, controller);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
+		Properties prop=new Properties();
+		InputStream rsa = getClass().getClassLoader().getResourceAsStream("bit.properties");
+		
+		try {
+			prop.load(rsa);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
+		Set<Object> keys = prop.keySet();
+		Iterator<Object> ite = keys.iterator();
+		while(ite.hasNext()){
+			String key =(String) ite.next();
+			String value = prop.getProperty(key);
+			hendler.addMapping(key, value);
+		}
+		
 	}
 	
 	@Override
@@ -49,7 +54,7 @@ public class DispatcherServlet extends HttpServlet{
 		String redirect="redirect:";
 		String url=req.getRequestURI().substring(req.getContextPath().length());
 		
-		BitController controller = map.get(url);
+		BitController controller = hendler.getController(url);
 		
 		String viewname=controller.execute(req);
 		if(viewname.startsWith(redirect)){
