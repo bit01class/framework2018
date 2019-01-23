@@ -1,11 +1,9 @@
 package com.bit.model;
 
-import java.sql.DriverManager;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.bit.core.JdbcTemplate;
@@ -30,14 +28,10 @@ public class BbsDao {
 
 	public List<BbsVo> selectAll() throws SQLException{
 		String sql="select * from bbs2";
-		JdbcTemplate template = new JdbcTemplate() {
+		JdbcTemplate<BbsVo> template = new JdbcTemplate<BbsVo>() {
 			
 			@Override
-			public void setParameters(PreparedStatement pstmt) throws SQLException {
-			}
-			
-			@Override
-			public Object mapper(ResultSet rs) throws SQLException {
+			public BbsVo mapper(ResultSet rs) throws SQLException {
 				BbsVo bean=new BbsVo(
 						rs.getInt("idx"),
 						rs.getString("sub"),
@@ -49,20 +43,15 @@ public class BbsDao {
 			}
 		};
 		
-		return (List<BbsVo>)template.queryList(sql);
+		return template.queryList(sql);
 	}
 	
 	public BbsVo selectOne(int idx) throws SQLException{
 		String sql="select * from bbs2 where idx=?";
-		JdbcTemplate template=new JdbcTemplate() {
+		JdbcTemplate<BbsVo> template=new JdbcTemplate<BbsVo>() {
 			
 			@Override
-			public void setParameters(PreparedStatement pstmt) throws SQLException {
-				pstmt.setInt(1, idx);
-			}
-			
-			@Override
-			public Object mapper(ResultSet rs) throws SQLException {
+			public BbsVo mapper(ResultSet rs) throws SQLException {
 				
 				return new BbsVo(
 						rs.getInt("idx"),
@@ -73,26 +62,19 @@ public class BbsDao {
 						);
 			}
 		};
-		return (BbsVo) template.queryObject(sql);
+		return template.queryObject(sql,new Object[]{idx});
 	}
 	
 	public int insertOne(BbsVo bean) throws SQLException{
 		String sql="insert into bbs2 (sub,content,nalja,cnt) values (?,?,now(),0)";
-		JdbcTemplate template = new JdbcTemplate() {
+		JdbcTemplate<BbsVo> template = new JdbcTemplate<BbsVo>() {
 			
 			@Override
-			public void setParameters(PreparedStatement pstmt) throws SQLException {
-				pstmt.setString(1, bean.getSub());
-				pstmt.setString(2, bean.getContent());
-			}
-
-			@Override
-			public Object mapper(ResultSet rs) throws SQLException {
-				// TODO Auto-generated method stub
+			public BbsVo mapper(ResultSet rs) throws SQLException {
 				return null;
 			}
 		};
-		return template.executeUpdate(sql);
+		return template.executeUpdate(sql,new Object[]{bean.getSub(),bean.getContent()});
 	}
 }
 

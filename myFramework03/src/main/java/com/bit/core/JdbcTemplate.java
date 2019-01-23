@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bit.model.entity.BbsVo;
-
-public abstract class JdbcTemplate {
+public abstract class JdbcTemplate<T> {
 	
 	public Connection getConnection() throws SQLException{
 		String driver="com.mysql.jdbc.Driver";
@@ -27,13 +25,15 @@ public abstract class JdbcTemplate {
 		return conn;
 	}
 	
-	public int executeUpdate(String sql) throws SQLException{
+	public int executeUpdate(String sql, Object[] objs) throws SQLException{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		try{
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
-			setParameters(pstmt);
+			for(int i=0; i<objs.length; i++){
+				pstmt.setObject(i+1, objs[i]);
+			}
 			return pstmt.executeUpdate();
 		}finally{
 			if(pstmt!=null)pstmt.close();
@@ -41,20 +41,28 @@ public abstract class JdbcTemplate {
 		}
 	}
 	
-	public Object queryObject(String sql) throws SQLException{
-		return queryList(sql).get(0);
+	public T queryObject(String sql) throws SQLException{
+		return queryObject(sql, new Object[]{});
+	}
+	public T queryObject(String sql,Object[] objs) throws SQLException{
+		return queryList(sql,objs).get(0);
 	}
 	
+	public List<T> queryList(String sql) throws SQLException{
+		return queryList(sql, new Object[]{});
+	}
 	
-	public List queryList(String sql) throws SQLException{
-		List list=new ArrayList();
+	public List<T> queryList(String sql,Object[] objs) throws SQLException{
+		List<T> list=new ArrayList<T>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
-			setParameters(pstmt);
+			for(int i=0; i<objs.length; i++){
+				pstmt.setObject(i+1, objs[i]);
+			}
 			rs=pstmt.executeQuery();
 			while(rs.next()){
 				list.add(mapper(rs));
@@ -67,8 +75,7 @@ public abstract class JdbcTemplate {
 		return list;
 	}
 	
-	public abstract void setParameters(PreparedStatement pstmt) throws SQLException;
-	public abstract Object mapper(ResultSet rs) throws SQLException;
+	public abstract T mapper(ResultSet rs) throws SQLException;
 }
 
 
