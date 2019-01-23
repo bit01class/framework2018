@@ -15,13 +15,6 @@ import com.bit.model.entity.BbsVo;
 public class BbsDaoTest {
 
 	@Test
-	public void testGetConnection() throws SQLException{
-		BbsDao dao=new BbsDao();
-		Connection conn = dao.getConnection();
-		assertNotNull(conn);
-	}
-
-	@Test
 	public void testSelectAll() throws SQLException{
 		BbsDao dao=new BbsDao();
 		List<BbsVo> list = dao.selectAll();

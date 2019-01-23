@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class JdbcTemplate<T> {
+public class JdbcTemplate<T> {
 	
 	public Connection getConnection() throws SQLException{
 		String driver="com.mysql.jdbc.Driver";
@@ -41,18 +41,18 @@ public abstract class JdbcTemplate<T> {
 		}
 	}
 	
-	public T queryObject(String sql) throws SQLException{
-		return queryObject(sql, new Object[]{});
+	public T queryObject(String sql,RowMapper<T> rowMapper) throws SQLException{
+		return queryObject(sql,rowMapper, new Object[]{});
 	}
-	public T queryObject(String sql,Object[] objs) throws SQLException{
-		return queryList(sql,objs).get(0);
-	}
-	
-	public List<T> queryList(String sql) throws SQLException{
-		return queryList(sql, new Object[]{});
+	public T queryObject(String sql,RowMapper<T> rowMapper,Object[] objs) throws SQLException{
+		return queryList(sql,rowMapper,objs).get(0);
 	}
 	
-	public List<T> queryList(String sql,Object[] objs) throws SQLException{
+	public List<T> queryList(String sql,RowMapper<T> rowMapper) throws SQLException{
+		return queryList(sql,rowMapper, new Object[]{});
+	}
+	
+	public List<T> queryList(String sql,RowMapper<T> rowMapper,Object[] objs) throws SQLException{
 		List<T> list=new ArrayList<T>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -65,7 +65,7 @@ public abstract class JdbcTemplate<T> {
 			}
 			rs=pstmt.executeQuery();
 			while(rs.next()){
-				list.add(mapper(rs));
+				list.add(rowMapper.mapRow(rs));
 			}
 		}finally{
 			if(rs!=null)rs.close();
@@ -75,7 +75,6 @@ public abstract class JdbcTemplate<T> {
 		return list;
 	}
 	
-	public abstract T mapper(ResultSet rs) throws SQLException;
 }
 
 
