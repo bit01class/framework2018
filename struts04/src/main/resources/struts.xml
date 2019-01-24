@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+
+	<package name="default" extends="struts-default">
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		<action name="list" class="com.bit.struts.action.ListAction">
+			<interceptor-ref name="params"/>
+			<result name="success">/list.jsp</result>
+		</action>
+		<action name="detail" class="com.bit.struts.action.OneAction">
+			<interceptor-ref name="params"/>
+			<result name="success">/detail.jsp</result>
+		</action>
+		<action name="add">
+			<result>/add.jsp</result>
+		</action>
+		<action name="insert" class="com.bit.struts.action.AddAction">
+			<interceptor-ref name="params"></interceptor-ref>
+			<interceptor-ref name="validation"></interceptor-ref>
+			<interceptor-ref name="workflow"></interceptor-ref>
+			<result name="input" type="dispatcher">/add.jsp</result>
+			<!-- <result name="success" type="redirect">list.action</result> -->
+			<result name="success" type="redirectAction">list</result>
+		</action>
+		<action name="edit" class="com.bit.struts.action.EditAction">
+			<interceptor-ref name="params"></interceptor-ref>
+			<interceptor-ref name="workflow"></interceptor-ref>
+			<result name="input" type="redirect">detail.action?bean.idx=${idx}</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">detail</param>
+				<param name="bean.idx">${idx}</param>
+			</result>
+		</action>
+	</package>
+
+
+
+
+
+
+
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
