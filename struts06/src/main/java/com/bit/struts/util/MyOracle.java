@@ -15,6 +15,7 @@ public class MyOracle {
 	public static Connection getConnection() throws SQLException{
 		if(conn==null){newConnection();}
 		if(conn.isClosed()){newConnection();}
+		conn.setAutoCommit(false);
 		return conn;
 	}
 	private static void newConnection() throws SQLException{
