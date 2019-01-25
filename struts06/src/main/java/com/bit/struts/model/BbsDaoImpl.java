@@ -9,17 +9,11 @@ import com.bit.struts.util.MyOracle;
 
 public class BbsDaoImpl implements BbsDao {
 
-	private boolean commit;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private Connection conn;
 	
 	public BbsDaoImpl() {
-		commit=true;
-	}
-	
-	public void isTest(){
-		commit=false;
 	}
 	
 	private BbsVo newVo(ResultSet rs) throws SQLException{
@@ -38,7 +32,7 @@ public class BbsDaoImpl implements BbsDao {
 			rs=pstmt.executeQuery();
 			while(rs.next())list.add(newVo(rs));
 		}finally{
-			isCommit(conn,commit);			
+			conn.close();
 		}
 		return list;
 	}
@@ -54,7 +48,7 @@ public class BbsDaoImpl implements BbsDao {
 			if(!(rs.next()))return null;
 			return newVo(rs);
 		}finally{
-			isCommit(conn,commit);			
+			conn.close();
 		}
 	}
 
@@ -68,7 +62,7 @@ public class BbsDaoImpl implements BbsDao {
 			pstmt.setString(2, bean.getContent());
 			return pstmt.executeUpdate();
 		}finally{
-			isCommit(conn,commit);			
+			conn.close();
 		}
 	}
 
@@ -83,7 +77,7 @@ public class BbsDaoImpl implements BbsDao {
 			pstmt.setInt(3, bean.getIdx());
 			return pstmt.executeUpdate();
 		}finally{
-			isCommit(conn,commit);			
+			conn.close();
 		}
 	}
 
@@ -96,14 +90,10 @@ public class BbsDaoImpl implements BbsDao {
 			pstmt.setInt(1, idx);
 			return pstmt.executeUpdate();
 		}finally{
-			isCommit(conn,commit);			
+			conn.close();
 		}
 	}
 	
-	public void isCommit(Connection conn,boolean result) throws SQLException{
-		if(result)conn.commit();
-		else	conn.rollback();
-	}
 
 }
 

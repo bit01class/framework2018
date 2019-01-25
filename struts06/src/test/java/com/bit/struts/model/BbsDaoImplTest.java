@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.components.Select;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,12 +22,21 @@ public class BbsDaoImplTest {
 	public static void setUpBeforeClass(){
 		log.debug("beforeClass run...");
 		dao=new BbsDaoImpl();
-		((BbsDaoImpl)dao).isTest();
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass(){
 		log.debug("afterClass run...");
+	}
+	
+	@Before
+	public void setUp(){
+		log.debug("setUp start...");
+	}
+	
+	@After
+	public void tearDown(){
+		log.debug("tearDown start...");
 	}
 
 	@Test
@@ -48,19 +59,25 @@ public class BbsDaoImplTest {
 		log.debug("testInsertOne run...");
 		BbsVo bean=new BbsVo(6,"test","test",null,0);
 		assertTrue(dao.insertOne(bean)>0);
+		dao.deleteOne(bean.getIdx());
 	}
 
 	@Test
 	public void testUpdateOne() throws SQLException {
 		log.debug("testUpdateOne run...");
-		BbsVo bean=new BbsVo(1,"testtest","testtest",null,0);
+		BbsVo bean=new BbsVo(6,"test","test",null,0);
+		dao.insertOne(bean);
+		bean=new BbsVo(6,"testtest","testtest",null,0);
 		assertTrue(dao.updateOne(bean)>0);
+		dao.deleteOne(bean.getIdx());
 	}
 
 	@Test
 	public void testDeleteOne() throws SQLException {
 		log.debug("testDeleteOne run...");
-		assertTrue(dao.deleteOne(1)>0);
+		BbsVo bean=new BbsVo(6,"test","test",null,0);
+		dao.insertOne(bean);
+		assertTrue(dao.deleteOne(bean.getIdx())>0);
 	}
 
 }
