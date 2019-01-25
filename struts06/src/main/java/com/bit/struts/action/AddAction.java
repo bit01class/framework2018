@@ -1,9 +1,12 @@
 package com.bit.struts.action;
 
+import java.sql.SQLException;
+
 import org.apache.log4j.Logger;
 
 import com.bit.struts.model.BbsDao;
 import com.bit.struts.model.BbsDaoImpl;
+import com.bit.struts.model.BbsDaoImpl2;
 import com.bit.struts.model.entity.BbsVo;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,7 +32,7 @@ public class AddAction extends ActionSupport implements ModelDriven<BbsVo>,Prepa
 	@Override
 	public String execute() throws Exception {
 		log.debug(bean);
-		BbsDao dao=new BbsDaoImpl();
+		BbsDao dao=new BbsDaoImpl2();
 		dao.insertOne(bean);
 		return Action.SUCCESS;
 	}
@@ -45,7 +48,11 @@ public class AddAction extends ActionSupport implements ModelDriven<BbsVo>,Prepa
 		log.debug("객체 생성 및 주입");
 	}
 
-
+	public String edit() throws SQLException{
+		BbsDao dao=new BbsDaoImpl2();
+		if(dao.updateOne(bean)==0)return Action.ERROR;
+		else return Action.SUCCESS;
+	}
 	
 	
 }

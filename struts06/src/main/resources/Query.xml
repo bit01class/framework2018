@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+	<sqlMap>
+		<select id="selectAll" resultClass="com.bit.struts.model.entity.BbsVo">
+		SELECT* FROM BBS02
+		</select>
+		
+		<insert id="insertOne" parameterClass="com.bit.struts.model.entity.BbsVo">
+			INSERT INTO BBS02 (IDX,SUB,CONTENT) VALUES (BBS02_SEQ.NEXTVAL,#sub#,#content#)
+		</insert>
+		
+		<select id="selectOne" parameterClass="int" resultClass="com.bit.struts.model.entity.BbsVo">
+		SELECT * FROM BBS02 WHERE IDX=#value#
+		</select>
+		
+		<update id="updateOne" parameterClass="com.bit.struts.model.entity.BbsVo">
+			UPDATE BBS02 SET SUB=#sub#,CONTENT=#content#,NALJA=SYSDATE WHERE IDX=#idx#
+		</update>
+	
+	</sqlMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
