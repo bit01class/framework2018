@@ -8,7 +8,10 @@ public class BbsVo {
 	private Timestamp nalja;
 	private int cnt;
 	
-	public BbsVo() {}
+	public BbsVo() {
+		System.out.println("VO 생성...");
+		
+	}
 
 	public BbsVo(int idx, String sub, String content, Timestamp nalja, int cnt) {
 		super();

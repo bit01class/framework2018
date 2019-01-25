@@ -17,6 +17,7 @@ import com.bit.struts.model.entity.BbsVo;
 public class BbsDaoImplTest {
 	static Logger log = Logger.getLogger("com.bit.struts.model.BbsDaoImplTest");
 	static BbsDao dao;
+	private BbsVo bean;
 	
 	@BeforeClass
 	public static void setUpBeforeClass(){
@@ -28,10 +29,12 @@ public class BbsDaoImplTest {
 	public static void tearDownAfterClass(){
 		log.debug("afterClass run...");
 	}
+
 	
 	@Before
 	public void setUp(){
 		log.debug("setUp start...");
+		bean=new BbsVo(6,"test","test",null,0);
 	}
 	
 	@After
@@ -57,7 +60,7 @@ public class BbsDaoImplTest {
 	@Test
 	public void testInsertOne() throws SQLException {
 		log.debug("testInsertOne run...");
-		BbsVo bean=new BbsVo(6,"test","test",null,0);
+		
 		assertTrue(dao.insertOne(bean)>0);
 		dao.deleteOne(bean.getIdx());
 	}
@@ -65,7 +68,6 @@ public class BbsDaoImplTest {
 	@Test
 	public void testUpdateOne() throws SQLException {
 		log.debug("testUpdateOne run...");
-		BbsVo bean=new BbsVo(6,"test","test",null,0);
 		dao.insertOne(bean);
 		bean=new BbsVo(6,"testtest","testtest",null,0);
 		assertTrue(dao.updateOne(bean)>0);
@@ -75,7 +77,6 @@ public class BbsDaoImplTest {
 	@Test
 	public void testDeleteOne() throws SQLException {
 		log.debug("testDeleteOne run...");
-		BbsVo bean=new BbsVo(6,"test","test",null,0);
 		dao.insertOne(bean);
 		assertTrue(dao.deleteOne(bean.getIdx())>0);
 	}

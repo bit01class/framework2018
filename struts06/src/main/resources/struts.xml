@@ -5,10 +5,47 @@
 
     <struts>
     
-    	<package name="default" extends="struts-default">
+    	<package name="default" namespace="" extends="struts-default">
     		<action name="index">
     			<result>/index.jsp</result>
+    		</action>
+    		<action name="intro">
+    			<result>/intro.jsp</result>
+    		</action>
+    	</package>
+    	<package name="bbs" namespace="/bbs" extends="default">
+    		<action name="list" class="com.bit.struts.action.ListAction">
+    			<interceptor-ref name="params"/>
+    			<result>/list.jsp</result>
+    		</action>
+    		<action name="add">
+    			<interceptor-ref name="timer"/>
+    			<interceptor-ref name="logger"/>
+    			<result>/add.jsp</result>
+    		</action>
+    		<action name="insert" class="com.bit.struts.action.AddAction">
+    			<interceptor-ref name="prepare"/>
+    			<interceptor-ref name="modelDriven"/>
+    			<interceptor-ref name="params"/>
+    			<interceptor-ref name="validation"/>
+    			<interceptor-ref name="workflow"/>
+    			<result name="input">/add.jsp</result>
+    			<result name="success" type="redirectAction">list</result>
     		</action>
     	</package>
     
     </struts>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
