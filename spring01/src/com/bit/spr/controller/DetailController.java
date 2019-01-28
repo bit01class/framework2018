@@ -8,22 +8,19 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.bit.spr.model.Bbs03Dao;
 
-public class ListController implements Controller {
-	
-	public ListController() {
-		System.out.println("new ListController()...");
-	}
+public class DetailController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest req,
 			HttpServletResponse arg1) throws Exception {
-		
-		Bbs03Dao dao = new Bbs03Dao();
-		
 		ModelAndView mav=new ModelAndView();
-//		req.setAttribute("alist", dao.selectAll());
-		mav.addObject("alist", dao.selectAll());
-		mav.setViewName("list");
+		
+		int num=Integer.parseInt(req.getParameter("idx"));
+		
+		Bbs03Dao dao=new Bbs03Dao();
+		
+		mav.addObject("bean", dao.selectOne(num));
+		mav.setViewName("detail");
 		
 		return mav;
 	}

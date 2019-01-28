@@ -26,9 +26,18 @@
 	class="com.bit.spr.controller.AddController">
 		<property name="supportedMethods" value="POST"></property>
 	</bean>
-	
-	
-	
+	<bean name="/detail.do"
+	class="com.bit.spr.controller.DetailController"></bean>
+	<bean name="/edit.do"
+	class="com.bit.spr.controller.EditController"></bean>
+	<bean name="/update.do"
+	class="com.bit.spr.controller.UpdateController">
+		<property name="supportedMethods" value="POST"></property>
+	</bean>
+	<bean name="/delete.do"
+	class="com.bit.spr.controller.DelController">
+		<property name="supportedMethods" value="POST"></property>
+	</bean>
 	
 	
 <!-- 

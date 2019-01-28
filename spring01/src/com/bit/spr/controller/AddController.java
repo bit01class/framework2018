@@ -10,6 +10,9 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.bit.spr.model.Bbs03Dao;
 
 public class AddController extends AbstractController {
+	public AddController() {
+		System.out.println("new AddController()...");
+	}
 
 //	@Override
 //	public ModelAndView handleRequest(HttpServletRequest req,

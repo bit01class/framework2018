@@ -39,6 +39,40 @@ public class Bbs03Dao {
 			pstmt.executeUpdate();
 		}
 	}
+	
+	public Bbs03Vo selectOne(int num) throws SQLException{
+		String sql="SELECT * FROM BBS03 WHERE NUM=?";
+		try(Connection conn=MyOracle.getConnection()){
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			if(!rs.next())return null;
+			return new Bbs03Vo(
+					rs.getInt("num"),rs.getString("name"),rs.getString("sub"),
+					rs.getString("content"),rs.getDate("nalja")
+					);
+		}
+	}
+
+	public int updateOne(String sub, String content, int num) throws SQLException {
+		String sql="UPDATE BBS03 SET SUB=?, CONTENT=? WHERE NUM=?";
+		try(Connection conn=MyOracle.getConnection()){
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, sub);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, num);
+			return pstmt.executeUpdate();
+		}
+	}
+
+	public int deleteOne(int num) throws SQLException {
+		String sql="DELETE FROM BBS03 WHERE NUM=?";
+		try(Connection conn=MyOracle.getConnection()){
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			return pstmt.executeUpdate();
+		}
+	}
 }
 
 

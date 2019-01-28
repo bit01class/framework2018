@@ -5,6 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	table{
+		width: 500px;
+		border-collapse: collapse;
+	}
+	th,td{
+		border: 1px solid gray;
+	}
+	td>a{
+		display: block;
+	}
+</style>
 </head>
 <body>
 <nav>
@@ -23,9 +35,9 @@
 	for(Bbs03Vo bean : list){
 	%>
 	<tr>
-		<td><%=bean.getNum() %></td>
-		<td><%=bean.getSub() %></td>
-		<td><%=bean.getNalja() %></td>
+		<td><a href="detail.do?idx=<%=bean.getNum() %>"><%=bean.getNum() %></a></td>
+		<td><a href="detail.do?idx=<%=bean.getNum() %>"><%=bean.getSub() %></a></td>
+		<td><a href="detail.do?idx=<%=bean.getNum() %>"><%=bean.getNalja() %></a></td>
 	</tr>
 	<%
 	}
