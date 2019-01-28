@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+	handlerMapping : url과 사용될 컨트롤러 매칭
+	url : controller  - mapping
+ -->
+	<bean id="handlerMapping" 
+	class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+	
+	 
+	<!-- 
+	<bean name="/index.do" class="com.bit.spr.controller.IndexController"></bean>
+	 -->
+	<bean name="/index.do" 
+	class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="index"></property>
+	</bean>
+	<bean name="/list.do" class="com.bit.spr.controller.ListController"></bean>
+	<bean name="/add.do" 
+	class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="add"></property>
+	</bean>
+	<bean name="/insert.do" 
+	class="com.bit.spr.controller.AddController">
+		<property name="supportedMethods" value="POST"></property>
+	</bean>
+	
+	
+	
+	
+	
+<!-- 
+	viewResolver : view처리기능
+ -->		
+	<bean id="viewResolver" 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
