@@ -2,6 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dao" class="com.bit.spr.model.Bbs03Dao"></bean>
+
 <!-- 
 	handlerMapping : url과 사용될 컨트롤러 매칭
 	url : controller  - mapping
@@ -10,14 +13,18 @@
 	class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
 	
 	 
+	<bean name="/index.do" class="com.bit.spr.controller.IndexController">
+		<property name="viewName" value="index"></property>
+	</bean>
 	<!-- 
-	<bean name="/index.do" class="com.bit.spr.controller.IndexController"></bean>
-	 -->
 	<bean name="/index.do" 
 	class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName" value="index"></property>
 	</bean>
-	<bean name="/list.do" class="com.bit.spr.controller.ListController"></bean>
+	 -->
+	<bean name="/list.do" class="com.bit.spr.controller.ListController">
+		<property name="dao" ref="dao"></property>
+	</bean>
 	<bean name="/add.do" 
 	class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName" value="add"></property>
@@ -25,18 +32,23 @@
 	<bean name="/insert.do" 
 	class="com.bit.spr.controller.AddController">
 		<property name="supportedMethods" value="POST"></property>
+		<property name="dao" ref="dao"></property>
 	</bean>
 	<bean name="/detail.do"
-	class="com.bit.spr.controller.DetailController"></bean>
+	class="com.bit.spr.controller.DetailController">
+		<property name="dao" ref="dao"></property></bean>
 	<bean name="/edit.do"
-	class="com.bit.spr.controller.EditController"></bean>
+	class="com.bit.spr.controller.EditController">
+		<property name="dao" ref="dao"></property></bean>
 	<bean name="/update.do"
 	class="com.bit.spr.controller.UpdateController">
 		<property name="supportedMethods" value="POST"></property>
+		<property name="dao" ref="dao"></property>
 	</bean>
 	<bean name="/delete.do"
 	class="com.bit.spr.controller.DelController">
 		<property name="supportedMethods" value="POST"></property>
+		<property name="dao" ref="dao"></property>
 	</bean>
 	
 	

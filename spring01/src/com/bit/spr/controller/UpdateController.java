@@ -9,6 +9,11 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import com.bit.spr.model.Bbs03Dao;
 
 public class UpdateController extends AbstractController {
+	Bbs03Dao dao;
+	
+	public void setDao(Bbs03Dao dao) {
+		this.dao = dao;
+	}
 
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest req,
@@ -19,7 +24,6 @@ public class UpdateController extends AbstractController {
 		String sub=req.getParameter("sub");
 		String content=req.getParameter("content");
 		
-		Bbs03Dao dao =new Bbs03Dao();
 		int result=dao.updateOne(sub,content,num);
 		
 		if(result>0) mav.setViewName("redirect:detail.do?idx="+num);

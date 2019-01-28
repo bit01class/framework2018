@@ -9,6 +9,11 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.bit.spr.model.Bbs03Dao;
 
 public class DetailController implements Controller {
+	Bbs03Dao dao;
+	
+	public void setDao(Bbs03Dao dao) {
+		this.dao = dao;
+	}
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest req,
@@ -17,7 +22,6 @@ public class DetailController implements Controller {
 		
 		int num=Integer.parseInt(req.getParameter("idx"));
 		
-		Bbs03Dao dao=new Bbs03Dao();
 		
 		mav.addObject("bean", dao.selectOne(num));
 		mav.setViewName("detail");

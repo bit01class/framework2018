@@ -10,6 +10,12 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.bit.spr.model.Bbs03Dao;
 
 public class AddController extends AbstractController {
+	Bbs03Dao dao;
+	
+	public void setDao(Bbs03Dao dao) {
+		this.dao = dao;
+	}
+	
 	public AddController() {
 		System.out.println("new AddController()...");
 	}
@@ -43,7 +49,6 @@ public class AddController extends AbstractController {
 		String sub=req.getParameter("sub");
 		String content=req.getParameter("content");
 		
-		Bbs03Dao dao = new Bbs03Dao();
 		dao.insertOne(name, sub, content);
 		
 		mav.setViewName("redirect:list.do");

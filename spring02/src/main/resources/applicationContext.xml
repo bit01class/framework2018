@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- create applicationContext.xml -->
+
+	<bean id="beanInter" class="com.bit.di.spring02.TestBean">
+		<property name="msg" value="한글출력"></property>
+	</bean>
+
+	<bean id="testBean" class="com.bit.di.spring02.TestBean10">
+		<constructor-arg ref="beanInter"></constructor-arg>
+	</bean>
+
+</beans>

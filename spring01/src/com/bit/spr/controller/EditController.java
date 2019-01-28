@@ -9,6 +9,12 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.bit.spr.model.Bbs03Dao;
 
 public class EditController implements Controller {
+	Bbs03Dao dao;
+	
+	public void setDao(Bbs03Dao dao) {
+		this.dao = dao;
+	} 
+	
 	public EditController() {
 		System.out.println("new EditController()...");
 	}
@@ -19,8 +25,6 @@ public class EditController implements Controller {
 		ModelAndView mav=new ModelAndView();
 		
 		int num=Integer.parseInt(req.getParameter("idx"));
-		
-		Bbs03Dao dao=new Bbs03Dao();
 		
 		mav.addObject("bean", dao.selectOne(num));
 		mav.setViewName("edit");

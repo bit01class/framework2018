@@ -9,6 +9,11 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.bit.spr.model.Bbs03Dao;
 
 public class ListController implements Controller {
+	Bbs03Dao dao;
+	
+	public void setDao(Bbs03Dao dao) {
+		this.dao = dao;
+	}
 	
 	public ListController() {
 		System.out.println("new ListController()...");
@@ -18,7 +23,6 @@ public class ListController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest req,
 			HttpServletResponse arg1) throws Exception {
 		
-		Bbs03Dao dao = new Bbs03Dao();
 		
 		ModelAndView mav=new ModelAndView();
 //		req.setAttribute("alist", dao.selectAll());
