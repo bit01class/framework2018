@@ -11,7 +11,7 @@
     <ul class="nav navbar-nav">
         <li class="active"><a href="index.do">HOME <span class="sr-only">(current)</span></a></li>
         <li><a href="intro.do">INTRO</a></li>
-        <li><a href="#">BBS</a></li>
+        <li><a href="bbs/list.do">BBS</a></li>
         <li><a href="#">LOGIN</a></li>
     </ul>
   </div>

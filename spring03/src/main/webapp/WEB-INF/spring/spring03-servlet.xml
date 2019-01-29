@@ -21,15 +21,25 @@
 			<props>
 				<prop key="/index.do">index</prop>
 				<prop key="/intro.do">intro</prop>
+				<prop key="/bbs/list.do">list</prop>
 			</props>
 		</property>
 	
+	</bean>
+	<bean id="dao" class="com.bit.spr.model.Bbs06Dao1">
+		<constructor-arg name="driver" value="oracle.jdbc.OracleDriver"></constructor-arg>
+		<constructor-arg name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></constructor-arg>
+		<constructor-arg name="user" value="scott"></constructor-arg>
+		<constructor-arg name="password" value="tiger"></constructor-arg>
 	</bean>
 	<bean id="index" class="com.bit.spr.controller.ViewController">
 		<property name="viewName" value="home"></property>
 	</bean>
 	<bean id="intro" class="com.bit.spr.controller.ViewController">
 		<property name="viewName" value="intro"></property>
+	</bean>
+	<bean id="list" class="com.bit.spr.controller.ListController">
+		<property name="dao" ref="dao"></property>
 	</bean>
 	 
 	 
