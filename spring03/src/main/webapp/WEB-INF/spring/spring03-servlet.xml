@@ -24,10 +24,13 @@
 				<prop key="/bbs/list.do">list</prop>
 				<prop key="/bbs/add.do">add</prop>
 				<prop key="/bbs/insert.do">insert</prop>
+				<prop key="/bbs/detail.do">detail</prop>
 			</props>
 		</property>
 	</bean>
-	
+	<bean id="detail" class="com.bit.spr.controller.DetailController">
+		<property name="dao" ref="dao"></property>
+	</bean>
 	<bean id="index" class="com.bit.spr.controller.ViewController">
 		<property name="viewName" value="home"></property>
 	</bean>

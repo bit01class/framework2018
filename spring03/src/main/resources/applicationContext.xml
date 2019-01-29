@@ -11,11 +11,18 @@
 		<property name="username" value="scott"></property>
 		<property name="password" value="tiger"></property>
 	</bean>
+	
+	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 
+	<bean id="dao" class="com.bit.spr.model.Bbs06Dao4">
+		<property name="template" ref="template"></property>
+	</bean>
+	<!-- 
 	<bean id="dao" class="com.bit.spr.model.Bbs06Dao3">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>	
-	<!-- 
 	<bean id="dao" class="com.bit.spr.model.Bbs06Dao2">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
