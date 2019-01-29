@@ -22,16 +22,12 @@
 				<prop key="/index.do">index</prop>
 				<prop key="/intro.do">intro</prop>
 				<prop key="/bbs/list.do">list</prop>
+				<prop key="/bbs/add.do">add</prop>
+				<prop key="/bbs/insert.do">insert</prop>
 			</props>
 		</property>
+	</bean>
 	
-	</bean>
-	<bean id="dao" class="com.bit.spr.model.Bbs06Dao1">
-		<constructor-arg name="driver" value="oracle.jdbc.OracleDriver"></constructor-arg>
-		<constructor-arg name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></constructor-arg>
-		<constructor-arg name="user" value="scott"></constructor-arg>
-		<constructor-arg name="password" value="tiger"></constructor-arg>
-	</bean>
 	<bean id="index" class="com.bit.spr.controller.ViewController">
 		<property name="viewName" value="home"></property>
 	</bean>
@@ -39,6 +35,15 @@
 		<property name="viewName" value="intro"></property>
 	</bean>
 	<bean id="list" class="com.bit.spr.controller.ListController">
+		<property name="dao" ref="dao"></property>
+	</bean>
+	<bean id="add" class="com.bit.spr.controller.ViewController">
+		<property name="viewName" value="form"></property>
+	</bean>
+	<bean id="insert" class="com.bit.spr.controller.InsertController">
+		<property name="supportedMethods" value="POST"></property>
+		<property name="commandName" value="bean"></property>
+		<property name="commandClass" value="com.bit.spr.model.entity.Bbs06Vo"></property>
 		<property name="dao" ref="dao"></property>
 	</bean>
 	 

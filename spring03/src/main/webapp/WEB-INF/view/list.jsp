@@ -38,8 +38,25 @@
 				</tbody>
 			</table>
 		</div>
+		<a href="add.do" role="button" class="btn btn-primary">입력</a>
 	</div>
 
 <%@ include file="template/footer.jspf" %>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

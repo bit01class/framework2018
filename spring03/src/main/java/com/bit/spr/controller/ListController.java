@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.bit.spr.model.Bbs06Dao;
 import com.bit.spr.model.Bbs06Dao1;
+import com.bit.spr.model.Bbs06Dao2;
 
 public class ListController implements Controller{
-	Bbs06Dao1 dao;
+	Bbs06Dao dao;
 	
-	public void setDao(Bbs06Dao1 dao) {
+	public void setDao(Bbs06Dao dao) {
 		this.dao = dao;
 	}
 

@@ -4,11 +4,26 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!-- applicationContext.xml -->
 
+	<bean id="dataSource"
+	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+
+	<bean id="dao" class="com.bit.spr.model.Bbs06Dao3">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>	
+	<!-- 
+	<bean id="dao" class="com.bit.spr.model.Bbs06Dao2">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 	<bean id="dao" class="com.bit.spr.model.Bbs06Dao1">
 		<constructor-arg name="driver" value="oracle.jdbc.OracleDriver"></constructor-arg>
 		<constructor-arg name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></constructor-arg>
 		<constructor-arg name="user" value="scott"></constructor-arg>
 		<constructor-arg name="password" value="tiger"></constructor-arg>
 	</bean>
-
+	 -->
 </beans>
