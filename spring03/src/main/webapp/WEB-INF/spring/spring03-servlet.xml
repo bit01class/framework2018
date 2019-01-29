@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- handlerMapping -->
+	<!-- 
 	<bean id="handlerMapping" 
 	class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
 	
@@ -11,7 +12,27 @@
 	class="com.bit.spr.controller.ViewController">
 		<property name="viewName" value="home"></property>
 	</bean>
+	<bean name="/intro.do"
+	class="com.bit.spr.controller.ViewController"></bean>
+	 -->
+	<bean id="handlerMapping"
+	class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<props>
+				<prop key="/index.do">index</prop>
+				<prop key="/intro.do">intro</prop>
+			</props>
+		</property>
 	
+	</bean>
+	<bean id="index" class="com.bit.spr.controller.ViewController">
+		<property name="viewName" value="home"></property>
+	</bean>
+	<bean id="intro" class="com.bit.spr.controller.ViewController">
+		<property name="viewName" value="intro"></property>
+	</bean>
+	 
+	 
 	<!-- viewResolver -->
 	<bean id="viewResolver" 
 	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -19,3 +40,22 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

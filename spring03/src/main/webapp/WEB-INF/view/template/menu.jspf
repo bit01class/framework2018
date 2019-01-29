@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <span>비트교육센터</span>
+      </a>
+    </div>
+    
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="index.do">HOME <span class="sr-only">(current)</span></a></li>
+        <li><a href="intro.do">INTRO</a></li>
+        <li><a href="#">BBS</a></li>
+        <li><a href="#">LOGIN</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
