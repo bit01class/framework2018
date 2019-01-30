@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+	
+	<sqlMap>
+		<typeAlias alias="vo" type="com.bit.spr.model.entity.Bbs06Vo"/>
+	
+		<select id="selectAll" resultClass="vo">
+		SELECT BBS_NUM AS NUM,NVL((SELECT NAME FROM USER06 WHERE USER_NUM =A.USER_NUM),'손님') AS NAME,SUB,CONTENT,CNT FROM BBS06 A
+		</select>
+		
+		<insert id="insertOne" parameterClass="vo">
+			INSERT INTO BBS06 VALUES (BBS06_SEQ.NEXTVAL,#userNum#,#sub#,#content#,0)
+		</insert>
+		
+		<select id="selectOne" parameterClass="int" resultClass="vo">
+		SELECT BBS_NUM AS NUM,NVL((SELECT NAME FROM USER06 WHERE USER_NUM =A.USER_NUM),'손님') AS NAME,SUB,CONTENT,CNT FROM BBS06 A WHERE BBS_NUM=#value#
+		</select>
+		
+		<update id="updateOne" parameterClass="vo">
+		UPDATE BBS06 SET SUB=#sub#,CONTENT=#content# WHERE BBS_NUM=#num#
+		</update>
+		
+		<delete id="deleteOne" parameterClass="int">
+		DELETE FROM BBS06 WHERE BBS_NUM=#value#
+		</delete>
+	</sqlMap>
+	
+	
+	
+	
+	
+	
+	
+	

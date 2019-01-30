@@ -3,8 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- 
+	<context:annotation-config/>
+	 -->
+	<beans:bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 	<!-- 
 	<bean id="handlerMapping"
 	 class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"></bean>
@@ -13,7 +20,23 @@
 	class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
 	
 	<beans:bean name="/" class="com.bit.spr.controller.IndexController"/>
-	<beans:bean name="/bbs/list.do" class="com.bit.spr.controller.ListController" p:dao-ref="bbs06Dao" />
+	<beans:bean name="/bbs/list.do" 
+		class="com.bit.spr.controller.ListController" p:dao-ref="bbs06Dao" />
+	<beans:bean name="/bbs/add.do" 
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="form"/>
+	<beans:bean name="/bbs/insert.do"
+		class="com.bit.spr.controller.InsertController"
+		p:supportedMethods="POST"
+		p:commandName="bean" p:commandClass="com.bit.spr.model.entity.Bbs06Vo"
+		p:dao-ref="bbs06Dao"/>
+	<beans:bean name="/bbs/detail.do"
+		class="com.bit.spr.controller.DetailController" 
+		p:dao-ref="bbs06Dao"/>
+		
+	<beans:bean name="/bbs/edit.do" class="com.bit.spr.controller.EditController"
+	/>
+	<beans:bean name="/bbs/update.do" class="com.bit.spr.controller.UpdateController"></beans:bean>
 	
 	<beans:bean id="viewResolver" 
 	class="org.springframework.web.servlet.view.InternalResourceViewResolver"

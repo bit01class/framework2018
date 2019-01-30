@@ -25,7 +25,7 @@
 		<div class="col-md-4">내용</div>
 		<div class="col-md-8">${bean.content }</div>
 		<div class="col-md-12">
-		
+			<a href="edit.do?idx=${bean.num }" class="btn btn-default" role="button">수정</a>
 		</div>
 	</div>
 
